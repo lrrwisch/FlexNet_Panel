@@ -9,7 +9,7 @@ export default function Sidebar() {
 
   const navigation = [
     {
-      name: 'Dashboard',
+      name: 'Ana Sayfa',
       href: '/dashboard',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -19,7 +19,7 @@ export default function Sidebar() {
       roles: ['SUPER_ADMIN', 'EDITOR', 'CUSTOMER'],
     },
     {
-      name: 'Shipments',
+      name: 'Gönderiler',
       href: '/shipments',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -29,7 +29,7 @@ export default function Sidebar() {
       roles: ['SUPER_ADMIN', 'EDITOR', 'CUSTOMER'],
     },
     {
-      name: 'Customers',
+      name: 'Müşteriler',
       href: '/customers',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ export default function Sidebar() {
       roles: ['SUPER_ADMIN', 'EDITOR'],
     },
     {
-      name: 'Users',
+      name: 'Kullanıcılar',
       href: '/users',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export default function Sidebar() {
         ) : (
           <div className="text-center">
             <h1 className="text-xl font-bold text-white">FlexNet</h1>
-            <p className="text-xs text-blue-100">Admin Panel</p>
+            <p className="text-xs text-blue-100">Yönetim Paneli</p>
           </div>
         )}
       </div>
@@ -124,7 +124,7 @@ export default function Sidebar() {
                 {user?.email}
               </p>
               <p className="text-xs text-gray-400">
-                {role === 'SUPER_ADMIN' ? 'Super Admin' : role === 'EDITOR' ? 'Editor' : 'Customer'}
+                {role === 'SUPER_ADMIN' ? 'Süper Yönetici' : role === 'EDITOR' ? 'Editör' : 'Müşteri'}
               </p>
             </div>
           )}

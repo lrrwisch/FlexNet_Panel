@@ -50,7 +50,7 @@ export default function DashboardContentEnhanced() {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+          <p className="mt-4 text-gray-600">Panel yükleniyor...</p>
         </div>
       </div>
     );
@@ -67,14 +67,14 @@ export default function DashboardContentEnhanced() {
   if (!stats) {
     return (
       <div className="text-center text-gray-500">
-        No data available
+        Veri bulunamadı
       </div>
     );
   }
 
   // Status Distribution Chart Data
   const statusChartData = {
-    labels: ['Shipped', 'Label Created', 'Pending'],
+    labels: ['Gönderildi', 'Etiket Oluşturuldu', 'Beklemede'],
     datasets: [
       {
         data: [
@@ -113,17 +113,17 @@ export default function DashboardContentEnhanced() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Welcome back, {user?.email?.split('@')[0] || 'User'}!
+              Tekrar hoş geldiniz, {user?.email?.split('@')[0] || 'Kullanıcı'}!
             </h1>
             <p className="text-gray-600 mt-2 flex items-center">
               <svg className="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              Here's what's happening with your shipments today
+              Bugün gönderilerinizde neler oluyor
             </p>
           </div>
           <div className="hidden md:block text-right">
-            <p className="text-sm text-gray-500">Last updated</p>
+            <p className="text-sm text-gray-500">Son güncelleme</p>
             <p className="text-sm font-semibold text-gray-700">{new Date().toLocaleDateString()}</p>
           </div>
         </div>
@@ -133,9 +133,9 @@ export default function DashboardContentEnhanced() {
         <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-lg p-6 text-white transform transition-all hover:scale-105 hover:shadow-xl">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-blue-100 text-sm font-medium">Total Shipments</p>
+              <p className="text-blue-100 text-sm font-medium">Toplam Gönderi</p>
               <p className="text-4xl font-bold mt-2">{stats.totalShipments}</p>
-              <p className="text-blue-100 text-xs mt-2">All shipments</p>
+              <p className="text-blue-100 text-xs mt-2">Tüm gönderiler</p>
             </div>
             <div className="bg-white/20 backdrop-blur rounded-2xl p-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,9 +148,9 @@ export default function DashboardContentEnhanced() {
         <div className="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl shadow-lg p-6 text-white transform transition-all hover:scale-105 hover:shadow-xl">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm font-medium">Shipped</p>
+              <p className="text-green-100 text-sm font-medium">Gönderildi</p>
               <p className="text-4xl font-bold mt-2">{stats.shippedShipments}</p>
-              <p className="text-green-100 text-xs mt-2">Successfully delivered</p>
+              <p className="text-green-100 text-xs mt-2">Başarıyla teslim edildi</p>
             </div>
             <div className="bg-white/20 backdrop-blur rounded-2xl p-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,9 +163,9 @@ export default function DashboardContentEnhanced() {
         <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl shadow-lg p-6 text-white transform transition-all hover:scale-105 hover:shadow-xl">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-amber-100 text-sm font-medium">Pending</p>
+              <p className="text-amber-100 text-sm font-medium">Beklemede</p>
               <p className="text-4xl font-bold mt-2">{stats.pendingShipments}</p>
-              <p className="text-amber-100 text-xs mt-2">Awaiting processing</p>
+              <p className="text-amber-100 text-xs mt-2">İşlem bekliyor</p>
             </div>
             <div className="bg-white/20 backdrop-blur rounded-2xl p-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,9 +178,9 @@ export default function DashboardContentEnhanced() {
         <div className="bg-gradient-to-br from-slate-700 to-gray-800 rounded-2xl shadow-lg p-6 text-white transform transition-all hover:scale-105 hover:shadow-xl">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-300 text-sm font-medium">Customers</p>
+              <p className="text-gray-300 text-sm font-medium">Müşteriler</p>
               <p className="text-4xl font-bold mt-2">{stats.totalCustomers}</p>
-              <p className="text-gray-300 text-xs mt-2">Active customers</p>
+              <p className="text-gray-300 text-xs mt-2">Aktif müşteriler</p>
             </div>
             <div className="bg-white/20 backdrop-blur rounded-2xl p-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,9 +194,9 @@ export default function DashboardContentEnhanced() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-1 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-900">Status Distribution</h3>
+            <h3 className="text-lg font-bold text-gray-900">Durum Dağılımı</h3>
             <div className="px-3 py-1 bg-blue-50 rounded-full">
-              <span className="text-xs font-semibold text-blue-600">Overview</span>
+              <span className="text-xs font-semibold text-blue-600">Genel Bakış</span>
             </div>
           </div>
           <div className="h-64">
@@ -213,7 +213,7 @@ export default function DashboardContentEnhanced() {
                 </svg>
               </div>
             </div>
-            <p className="text-sm font-medium text-blue-600 mb-1">Label Created</p>
+            <p className="text-sm font-medium text-blue-600 mb-1">Etiket Oluşturuldu</p>
             <p className="text-3xl font-bold text-blue-900">{stats.labelCreatedShipments}</p>
           </div>
 
@@ -225,7 +225,7 @@ export default function DashboardContentEnhanced() {
                 </svg>
               </div>
             </div>
-            <p className="text-sm font-medium text-emerald-600 mb-1">Completion Rate</p>
+            <p className="text-sm font-medium text-emerald-600 mb-1">Tamamlanma Oranı</p>
             <p className="text-3xl font-bold text-emerald-900">
               {stats.totalShipments > 0 ? Math.round((stats.shippedShipments / stats.totalShipments) * 100) : 0}%
             </p>
@@ -239,7 +239,7 @@ export default function DashboardContentEnhanced() {
                 </svg>
               </div>
             </div>
-            <p className="text-sm font-medium text-amber-600 mb-1">Processing</p>
+            <p className="text-sm font-medium text-amber-600 mb-1">İşleniyor</p>
             <p className="text-3xl font-bold text-amber-900">{stats.pendingShipments + stats.labelCreatedShipments}</p>
           </div>
         </div>
@@ -248,9 +248,9 @@ export default function DashboardContentEnhanced() {
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900">Recent Shipments</h2>
+            <h2 className="text-xl font-bold text-gray-900">Son Gönderiler</h2>
             <span className="px-4 py-1.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
-              Latest Activity
+              Son Aktivite
             </span>
           </div>
         </div>
@@ -258,11 +258,11 @@ export default function DashboardContentEnhanced() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Order Code</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Customer</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Tracking</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Sipariş Kodu</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Müşteri</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Durum</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Takip</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Tarih</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
@@ -298,7 +298,7 @@ export default function DashboardContentEnhanced() {
                     <svg className="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                     </svg>
-                    <p className="text-sm font-medium text-gray-500">No shipments found</p>
+                    <p className="text-sm font-medium text-gray-500">Gönderi bulunamadı</p>
                   </td>
                 </tr>
               )}

@@ -17,7 +17,7 @@ export default function Layout() {
                 <span className="bg-gradient-to-r from-blue-600 to-cyan-600 text-transparent bg-clip-text">
                   FlexNet
                 </span>
-                <span className="ml-2 text-gray-400 font-normal text-sm">Management Panel</span>
+                <span className="ml-2 text-gray-400 font-normal text-sm">Yönetim Paneli</span>
               </h2>
             </div>
 
@@ -33,7 +33,7 @@ export default function Layout() {
                     {user?.email?.split('@')[0]}
                   </p>
                   <p className="text-xs text-gray-500">
-                    {user?.role === 'SUPER_ADMIN' ? 'Super Admin' : user?.role === 'EDITOR' ? 'Editor' : 'Customer'}
+                    {user?.role === 'SUPER_ADMIN' ? 'Süper Yönetici' : user?.role === 'EDITOR' ? 'Editör' : 'Müşteri'}
                   </p>
                 </div>
               </div>
@@ -45,7 +45,7 @@ export default function Layout() {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
-                Logout
+                Çıkış Yap
               </button>
             </div>
           </div>

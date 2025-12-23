@@ -34,12 +34,12 @@ export default function Login() {
               </svg>
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">FlexNet Panel</h1>
-            <p className="text-blue-100 text-sm">Shipment Management System</p>
+            <p className="text-blue-100 text-sm">Gönderi Yönetim Sistemi</p>
           </div>
 
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back</h2>
-            <p className="text-gray-500 mb-6">Sign in to access your dashboard</p>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Hoş Geldiniz</h2>
+            <p className="text-gray-500 mb-6">Panele giriş yapmak için bilgilerinizi girin</p>
 
             {error && (
               <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
@@ -55,7 +55,7 @@ export default function Login() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="username" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Email Address
+                  E-posta Adresi
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -78,7 +78,7 @@ export default function Login() {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Password
+                  Şifre
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -126,7 +126,7 @@ export default function Login() {
                     disabled={isLoading}
                   />
                   <label htmlFor="remember" className="ml-2 text-sm text-gray-600 font-medium">
-                    Remember me
+                    Beni Hatırla
                   </label>
                 </div>
               </div>
@@ -142,10 +142,10 @@ export default function Login() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Signing in...
+                    Giriş Yapılıyor...
                   </span>
                 ) : (
-                  'Sign In to Dashboard'
+                  'Panele Giriş Yap'
                 )}
               </button>
             </form>
@@ -156,10 +156,10 @@ export default function Login() {
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
                 <div>
-                  <p className="text-xs font-semibold text-blue-900 mb-1">Demo Credentials</p>
+                  <p className="text-xs font-semibold text-blue-900 mb-1">Demo Giriş Bilgileri</p>
                   <p className="text-xs text-blue-700">
-                    Email: <span className="font-mono font-semibold">demo@flexi.com</span><br />
-                    Password: <span className="font-mono font-semibold">password123</span>
+                    E-posta: <span className="font-mono font-semibold">demo@flexi.com</span><br />
+                    Şifre: <span className="font-mono font-semibold">password123</span>
                   </p>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function Login() {
 
           <div className="bg-gray-50 px-8 py-4 border-t border-gray-100">
             <p className="text-center text-xs text-gray-500">
-              © 2025 FlexNet. All rights reserved.
+              © 2025 FlexNet. Tüm hakları saklıdır.
             </p>
           </div>
         </div>

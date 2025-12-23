@@ -69,7 +69,7 @@ export default function ShipmentsEnhanced() {
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (err: unknown) {
-      alert('Failed to download PDF: ' + (err as Error).message);
+      alert('PDF indirme başarısız: ' + (err as Error).message);
     }
   };
 
@@ -109,20 +109,20 @@ export default function ShipmentsEnhanced() {
   // Export to Excel
   const handleExportToExcel = () => {
     const exportData = filteredShipments.map(shipment => ({
-      'Order Code': shipment.orderCode,
-      'Flex Code': shipment.flexCode,
-      'Customer': shipment.customerName,
-      'Status': shipment.status,
-      'Tracking Number': shipment.waybill || '-',
-      'Ship Company': shipment.shipCompany || '-',
-      'Created Date': new Date(shipment.createdAt).toLocaleDateString()
+      'Sipariş Kodu': shipment.orderCode,
+      'Flex Kodu': shipment.flexCode,
+      'Müşteri': shipment.customerName,
+      'Durum': shipment.status,
+      'Takip Numarası': shipment.waybill || '-',
+      'Kargo Şirketi': shipment.shipCompany || '-',
+      'Oluşturma Tarihi': new Date(shipment.createdAt).toLocaleDateString()
     }));
 
     const ws = XLSX.utils.json_to_sheet(exportData);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Shipments');
-    
-    const fileName = `Shipments_${new Date().toISOString().split('T')[0]}.xlsx`;
+    XLSX.utils.book_append_sheet(wb, ws, 'Gönderiler');
+
+    const fileName = `Gönderiler_${new Date().toISOString().split('T')[0]}.xlsx`;
     XLSX.writeFile(wb, fileName);
   };
 
@@ -131,7 +131,7 @@ export default function ShipmentsEnhanced() {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading shipments...</p>
+          <p className="mt-4 text-gray-600">Gönderiler yükleniyor...</p>
         </div>
       </div>
     );
@@ -150,8 +150,8 @@ export default function ShipmentsEnhanced() {
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Shipments</h1>
-          <p className="text-gray-600 mt-1">Manage and track all your shipments</p>
+          <h1 className="text-2xl font-bold text-gray-900">Gönderiler</h1>
+          <p className="text-gray-600 mt-1">Tüm gönderilerinizi yönetin ve takip edin</p>
         </div>
         <button
           onClick={handleExportToExcel}
@@ -160,7 +160,7 @@ export default function ShipmentsEnhanced() {
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          Export to Excel
+          Excel'e Aktar
         </button>
       </div>
 
@@ -169,25 +169,25 @@ export default function ShipmentsEnhanced() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* Search */}
           <div className="lg:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Ara</label>
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Order Code, Flex Code, Tracking..."
+              placeholder="Sipariş Kodu, Flex Kodu, Takip..."
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
           {/* Status Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Durum</label>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="All">All Status</option>
+              <option value="All">Tüm Durumlar</option>
               <option value="Siparis_Alındı">Sipariş Alındı</option>
               <option value="Label_Olusturuldu">Label Oluşturuldu</option>
             </select>
@@ -195,13 +195,13 @@ export default function ShipmentsEnhanced() {
 
           {/* Customer Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Customer</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Müşteri</label>
             <select
               value={customerFilter}
               onChange={(e) => setCustomerFilter(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="All">All Customers</option>
+              <option value="All">Tüm Müşteriler</option>
               {uniqueCustomers.map(customer => (
                 <option key={customer} value={customer}>{customer}</option>
               ))}
@@ -210,7 +210,7 @@ export default function ShipmentsEnhanced() {
 
           {/* Items Per Page */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Per Page</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Sayfa Başına</label>
             <select
               value={itemsPerPage}
               onChange={(e) => setItemsPerPage(Number(e.target.value))}
@@ -227,7 +227,7 @@ export default function ShipmentsEnhanced() {
         {/* Date Range */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Başlangıç Tarihi</label>
             <input
               type="date"
               value={startDate}
@@ -236,7 +236,7 @@ export default function ShipmentsEnhanced() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Bitiş Tarihi</label>
             <input
               type="date"
               value={endDate}
@@ -259,7 +259,7 @@ export default function ShipmentsEnhanced() {
               }}
               className="text-sm text-blue-600 hover:text-blue-800"
             >
-              Clear all filters
+              Tüm filtreleri temizle
             </button>
           </div>
         )}
@@ -267,8 +267,8 @@ export default function ShipmentsEnhanced() {
 
       {/* Results Summary */}
       <div className="mb-4 text-sm text-gray-600">
-        Showing {startIndex + 1}-{Math.min(endIndex, filteredShipments.length)} of {filteredShipments.length} shipments
-        {filteredShipments.length !== shipments.length && ` (filtered from ${shipments.length} total)`}
+        {filteredShipments.length} gönderiden {startIndex + 1}-{Math.min(endIndex, filteredShipments.length)} arası gösteriliyor
+        {filteredShipments.length !== shipments.length && ` (toplam ${shipments.length}'den filtrelendi)`}
       </div>
 
       {/* Shipments Table */}
@@ -278,25 +278,25 @@ export default function ShipmentsEnhanced() {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order Code
+                  Sipariş Kodu
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Flex Code
+                  Flex Kodu
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Customer
+                  Müşteri
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  Durum
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tracking
+                  Takip
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date
+                  Tarih
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  İşlemler
                 </th>
               </tr>
             </thead>
@@ -338,7 +338,7 @@ export default function ShipmentsEnhanced() {
                         }}
                         className="text-blue-600 hover:text-blue-900"
                       >
-                        View
+                        Görüntüle
                       </button>
                       <button
                         onClick={() => handleDownloadPDF(shipment.orderCode, shipment.flexCode)}
@@ -352,7 +352,7 @@ export default function ShipmentsEnhanced() {
               ) : (
                 <tr>
                   <td colSpan={7} className="px-6 py-4 text-center text-sm text-gray-500">
-                    No shipments found
+                    Gönderi bulunamadı
                   </td>
                 </tr>
               )}
@@ -365,7 +365,7 @@ export default function ShipmentsEnhanced() {
       {totalPages > 1 && (
         <div className="mt-4 flex items-center justify-between">
           <div className="text-sm text-gray-600">
-            Page {currentPage} of {totalPages}
+            Sayfa {currentPage} / {totalPages}
           </div>
           <div className="flex space-x-2">
             <button
@@ -373,28 +373,28 @@ export default function ShipmentsEnhanced() {
               disabled={currentPage === 1}
               className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
-              First
+              İlk
             </button>
             <button
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
               className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
-              Previous
+              Önceki
             </button>
             <button
               onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
               className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
-              Next
+              Sonraki
             </button>
             <button
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
               className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
-              Last
+              Son
             </button>
           </div>
         </div>
